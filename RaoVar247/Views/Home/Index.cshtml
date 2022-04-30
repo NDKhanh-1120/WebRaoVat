@@ -1,189 +1,38 @@
-﻿@{
+﻿@model IEnumerable<RaoVar247.Models.Product>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div id="category-list">
-    <h4 class="title">Danh mục sản phẩm</h4>
-    <hr>
-    <div id="list">
-        <div class="category-item">
-            <a href="">
-                <img src="/under-the-sea.jpg" alt="">
-                <div class="category-name">
-                    <p>Đồ điện tử</p>
-                </div>
-            </a>
-        </div>
-        <div class="category-item">
-            <a href="">
-                <img src="/under-the-sea.jpg" alt="">
-                <div class="category-name">
-                    <p>Đồ điện tử 1</p>
-                </div>
-            </a>
-        </div>
-        <div class="category-item">
-            <a href="">
-                <img src="/under-the-sea.jpg" alt="">
-                <div class="category-name">
-                    <p>Đồ điện tử 2</p>
-                </div>
-            </a>
-        </div>
-        <div class="category-item">
-            <a href="">
-                <img src="/under-the-sea.jpg" alt="">
-                <div class="category-name">
-                    <p>Đồ điện tử 3</p>
-                </div>
-            </a>
-        </div>
-        <div class="category-item">
-            <a href="">
-                <img src="/under-the-sea.jpg" alt="">
-                <div class="category-name">
-                    <p>Đồ điện tử 4</p>
-                </div>
-            </a>
-        </div>
-
-
-    </div>
-</div>
+@*//@Html.Partial("CategoryList")*@
+@{ 
+    Html.RenderAction("CategoryList");
+}
 <div id="section">
     <h4>Tin đăng gần đây</h4>
     <hr>
     <div class="grid">
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="">
-                <img src="co gai.jpg" alt="">
-                <p class="product-name">Product Name</p>
-                <p class="product-price">1.300.000 vnđ</p>
-                <p class="user-name">Khánh</p>
-                <div class="info-row">
-                    <p class="post-time">3 ngày trước</p>
-                    <p> | </p>
-                    <p class="address">Hà Nội</p>
-                </div>
-            </a>
-        </div>
+        @foreach (RaoVar247.Models.Product item in Model)
+        {
+
+            <div class="grid-item">
+                <a href="">
+                    @{
+                        var imagePath = "~/Content/Images/" + item.ImagePath;
+                    }
+                    <img src="@Url.Content(imagePath)" alt="">
+                    <p class="product-name">@item.ProductName</p>
+                    <p class="product-price">@item.Price vnđ</p>
+                    <p class="user-name">@item.User.LastName @item.User.FirstName</p>
+                    <div class="info-row">
+                        <p class="post-time">
+                            @Math.Round( DateTime.Today.Subtract(item.CreateDate).TotalDays,0) ngày trước                      
+                        </p>
+                        <p> | </p>
+                        <p class="address">@item.Address</p>
+                    </div>
+                </a>
+            </div>
+        }
 
 
     </div>
@@ -193,4 +42,11 @@
         <p class="page-number">3</p>
         <p class="page-number">4</p>
     </div>
+    @if(TempData["Nofi"] != null)
+    {
+            <div class="small-nofi">
+                <div class="nofi">@TempData["Nofi"] </div>
+            </div>
+            <script src="~/Content/small-nofi.js"></script>
+    }
 </div>

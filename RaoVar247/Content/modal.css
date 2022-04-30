@@ -1,0 +1,16 @@
+.small-nofi {
+    position: fixed;
+    top: 228px;
+    right: 0;
+    left: 600px;
+    width: 20%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+}
+.nofi {
+    background: #9a9a9a;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+}

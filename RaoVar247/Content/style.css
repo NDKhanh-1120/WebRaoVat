@@ -40,6 +40,9 @@ header .content #postnewbt {
     position: relative;
     left: 218px;
     height:32px;
+    border-style: none;
+    background-color: #eaa984;
+    border-radius: 4px;
 }
 header #search{
     display: inline
@@ -52,7 +55,10 @@ header #search input{
 
 header #search button {
     height:32px;
-    width:32px;
+    width:70px;
+    border-radius: 4px;
+    background-color: #eaa984;
+    border-style: none;
 }
 nav ul {
     width: 980px;
@@ -130,6 +136,8 @@ nav ul li a:hover {
 }
 #section .grid .grid-item img {
     width: 100%;
+    max-height: 186px;
+    min-height: 186px;
 }
 #section .grid .grid-item a  p {
     padding-left: 4px;
@@ -167,4 +175,7 @@ footer p {
 }
 h4 {
   padding:12px 0 0 16px;   
+}
+.text-danger {
+    font-size: 12px;
 }

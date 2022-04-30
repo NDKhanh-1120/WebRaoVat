@@ -13,5 +13,9 @@ namespace RaoVar247.Areas.admin.Controllers
         {
             return View();
         }
+        public ActionResult CategoryManage()
+        {
+            return View();
+        }
     }
 }

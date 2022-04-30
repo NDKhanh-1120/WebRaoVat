@@ -1,0 +1,41 @@
+.drop-down-board {
+    position: absolute;
+    background-color: #fff;
+    height: auto;
+    display: none;
+    z-index: 9;
+}
+.drop-down-board ul {
+    list-style: none;
+    padding-left: 0;
+    width: 148px;
+    height: auto;
+    font-size: 16px;
+    margin: 0;
+}
+.drop-down-board ul li {
+    width: inherit;
+    height: 40px;
+}
+.drop-down-board ul li a {
+    display: block;
+    line-height: 40px;
+    width: inherit;
+    height: inherit;
+    color: #000;
+    padding-left: 12px;
+
+}
+.drop-down-board ul li a:hover {
+    background-color: #d5d5d5;
+}
+.user-cell {
+    cursor: pointer;
+    padding: 0 8px;
+}
+.user-cell:hover {
+    
+}
+.user-cell:hover .drop-down-board {
+    display: block;
+}

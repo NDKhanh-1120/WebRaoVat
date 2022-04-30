@@ -1,0 +1,60 @@
+﻿@model RaoVar247.Models.Product
+
+@{
+    ViewBag.Title = "PostNewProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="content">
+        @using (Html.BeginForm("PostNewProduct", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+        <div class="col-left">
+            <label for="product-img-file">
+                <img id="product-img" src="~/Content/select-image-vector-12503576.jpg" alt="">
+            </label>
+            <input type="file" name="product-img-file" id="product-img-file" accept="image/*" onchange="displayImg(event)">
+            @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+        </div>
+
+            <div class="col-right">
+                <div class="row-control">
+                    <label for="">Danh mục</label>
+                    @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control", @style = "height: 38px;width: 404px;border - radius: 8px;border - color: #d5d5d5;border - style: solid;padding - left: 8px; " })
+                </div>
+                <div class="row-control">
+                    <label for="">Tiêu đề</label>
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+                <div class="row-control">
+                    <label for="">Giá</label>
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+                <div class="row-control">
+                    <label for="">Mô tả</label>
+                    <textarea name="Description" id="Description" style="width:404px;height:100px;display:block;overflow-y:scroll" rows="30"></textarea>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="row-control">
+                    <label for="">Địa chỉ</label>
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+                <div class="row-control">
+                    <input type="submit" value="Đăng" onclick="displayImg(event)">
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+<script>
+    function displayImg(event) {
+        var image = document.getElementById('product-img');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>

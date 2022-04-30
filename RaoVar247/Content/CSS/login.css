@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+.container #form {
+    background: #fff;
+    width: 372px;
+    height: 500px;
+    border: 2px solid #858585;
+    box-shadow: -1px 1px 10px #858585;
+}
+.container #form h3 {
+    font-family: Verdana, sans-serif;
+}
+.container #form .row-control {
+    margin-top: 24px;
+    width: 100%;
+}
+.container #form .row-control input{
+    width:100%;
+    height: 38px;
+}
+.container #form .row-control input[type="text"],input[type="password"] {
+    padding-left: 8px;
+}
+.container #form .row-control input[type="submit"]{
+    color: #fff;
+}
+.center {
+    text-align: center;
+}
+.margin-top {
+    margin-top: 54px !important;
+}

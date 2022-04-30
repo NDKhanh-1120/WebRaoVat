@@ -1,0 +1,23 @@
+﻿@model IEnumerable<RaoVar247.Models.Category>
+
+<div id="category-list">
+<h4 class="title">Danh mục sản phẩm</h4>
+<hr>
+<div id="list">
+    @foreach(var item in Model)
+            {
+    <div class="category-item">
+        <a href="">
+            <img src="~/Content/select-image-vector-12503576.jpg" alt="">
+            <div class="category-name">
+                <p>@item.CategoryName</p>
+            </div>
+        </a>
+    </div>
+
+            }
+  
+
+
+</div>
+</div>
