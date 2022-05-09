@@ -54,10 +54,11 @@ namespace RaoVar247.Controllers
                         string UploadPath = Server.MapPath("~/Content/Images/" + FileName);
                         f.SaveAs(UploadPath);
                         product.ImagePath = FileName;
+                    product.UserId = (int)Session["UserId"];
                     }
                     db.Products.Add(product);
                     db.SaveChanges();
-                    TempData["Nofi"] = "Added";
+                    TempData["Nofi"] = "Đăng tin thanh công";
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -83,14 +84,42 @@ namespace RaoVar247.Controllers
 
             return View();
         }
-        public ActionResult Product(int categoryId,int subcategory,string province,string district,string village)
+        public ActionResult Product(int categoryId = -1,int subcategoryId = -1,string searchstring = null,int priceLevel = -1)
         {
-            return View(db.Products.Where(c=>c.SubCategory.CategoryId == categoryId).ToList());
+            var list = db.Products.ToList();
+            if(searchstring != null)
+            {
+                list = list.Where(c => c.ProductName.Contains(searchstring)).ToList();
+            }
+            else
+            if (subcategoryId == -1)
+            {
+                ViewBag.Level = "category";
+                ViewBag.CurrentCategoryId = categoryId;
+                list = list.Where(c => c.SubCategory.CategoryId == categoryId).ToList();
+            }
+            else 
+            {
+                ViewBag.Level = "subcategory";
+                ViewBag.CurrentSubcategoryId = subcategoryId;
+                list = list.Where(c => c.SubCategoryId == subcategoryId).ToList();
+            }
+
+            if(priceLevel != -1)
+            {
+                switch (priceLevel)
+                {
+                    case 1: list = list.Where(p => p.Price <= 500000).ToList();break;
+                    case 2: list = list.Where(p => p.Price >= 500000 && p.Price <= 1000000).ToList();break;
+                    case 3: list = list.Where(p => p.Price >= 1000000).ToList();break;
+                    default:
+                        break;
+                }
+            }
+
+            return View(list);
         }
-        public ActionResult Productint(int subcategory)
-        {
-            return View();
-        }
+
         public PartialViewResult CategoryList()
         {
             return PartialView(db.Categories.ToList());

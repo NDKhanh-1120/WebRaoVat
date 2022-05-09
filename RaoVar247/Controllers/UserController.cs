@@ -71,6 +71,7 @@ namespace RaoVar247.Controllers
                     Session["LastName"] = user.LastName;
                     Session["FirstName"] = user.FirstName;
                     Session["UserName"] = user.UserName;
+                    Session["UserId"] = user.UserId;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -95,6 +96,12 @@ namespace RaoVar247.Controllers
         public ActionResult Profile(int userId)
         {
             return View(db.Users.FirstOrDefault(u => u.UserId == userId));
+        }
+        [HttpPost]
+        public ActionResult Edit(int userId )
+        {
+            var user = db.Users.FirstOrDefault(u => u.UserId== userId);
+            return View();
         }
         public PartialViewResult ProfileColumn(int userId)
         {

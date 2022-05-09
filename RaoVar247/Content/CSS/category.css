@@ -16,7 +16,7 @@ img {
 .filter {
     height: 44px;
 }
-.filter #provinceslt, .filter option{
+.filter select, .filter option{
     height: 28px;
     width: 154px;
     border-radius: 16px;

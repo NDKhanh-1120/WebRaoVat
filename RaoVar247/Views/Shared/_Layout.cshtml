@@ -31,17 +31,23 @@
 
                 <div class="row-h">
                     <div class="logo">
-                        <img id="logo" src="/da.jpg" alt="">
+                        <a href="/Home/Index">
+                            <img id="logo" src="~/Content/Images/da.jpg" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="row-h">
                     <div id="search">
-                        <form action="" method="get">
-                            <input id="searchtb" type="text" placeholder="Tìm kiếm sản phẩm ..." />
-                            <button id="submitbt" type="submit">
-                                Tìm kiếm
-                            </button>
-                        </form>
+                        @using (Html.BeginForm("Product", "Home", FormMethod.Get, new { @id = "form" }))
+                        {
+
+                
+                                <input id="searchtb" name="searchstring "type="text" placeholder="Tìm kiếm sản phẩm ..." />
+                                <button id="submitbt" type="submit">
+                                    Tìm kiếm
+                                </button>
+                        }
+                          
                     </div>
                     <a href="/Home/PostNewProduct/">
                     <input id="postnewbt" type="button" value="Đăng tin">
@@ -53,7 +59,7 @@
                             <p class="username">@Session["FirstName"]</p>
                             <div class="drop-down-board">
                                 <ul>
-                                    <li> <a href="">Trang cá nhân</a> </li>
+                                    <li> <a href="/User/Profile/?userId=@Session["UserId"]">Trang cá nhân</a> </li>
                                     <li> <a href="">Bài đăng của bạn</a> </li>
                                     <li> <a href="">Tin đã lưu</a> </li>
                                     <li> <a href="">Đổi mật khẩu</a></li>

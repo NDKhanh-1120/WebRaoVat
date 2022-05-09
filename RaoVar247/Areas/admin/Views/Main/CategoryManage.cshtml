@@ -11,7 +11,7 @@
         <button href="#" class="button" id="create-bt" style="background-color: #fc6006;color:#fff">Tạo mới</button>
     </div>
     <div id="table">
-        @{ Html.RenderAction("CategoryList", "Home");}
+        @{ Html.RenderAction("CategoryList", "Main");}
     </div>
 </div>
 
@@ -25,16 +25,12 @@
                 <hr style="width: 90%;margin: 0 auto;">
                 <div class="row-control">
                     <label for="">Mã danh mục</label>
-                    <input type="text" name="" id="">
-                    @Html.LabelFor(model => model.CategoryId)
                     @Html.TextBoxFor(model => model.CategoryId, null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                 </div>
                 
                 <div class="row-control">
-                    @*<label for="">Tên danh mục</label>
-                    <input type="text" name="" id="">*@
-                    @Html.LabelFor(model => model.CategoryName)
+                    <label for="">Tên danh mục</label>
                     @Html.TextBoxFor(model => model.CategoryName, null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                 </div>

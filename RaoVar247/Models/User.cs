@@ -33,5 +33,7 @@ namespace RaoVar247.Models
 
         [StringLength(50)]
         public string Address { get; set; }
+
+     
     }
 }

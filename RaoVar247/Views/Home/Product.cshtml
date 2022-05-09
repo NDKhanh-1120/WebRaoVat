@@ -4,60 +4,132 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (Model.Count() == 0)
+{
+    <div id="main" style="margin-bottom:8px">
+        <div id="navigation">
+            <p>Raovat</p>
+            <p>>></p>
+
+        </div>
+    </div>
+    <div class="filter">
+        @using (Html.BeginForm("Product", "Home", FormMethod.Get, new { @class = "filter", @id = "form", @name = "filter" }))
+        {
+            if (ViewBag.CurrentCategoryId != null)
+            {
+                <input type="hidden" value="@ViewBag.CurrentCategoryId" name="categoryId" />
+            }
+            if (ViewBag.CurrentSubcategoryId != null)
+            {
+                <input type="hidden" value="@ViewBag.CurrentSubcategoryId" name="subcategoryId" />
+            }
+            @*<select name="province" id="provinceslt">
+                    <option value="Toanquoc">Toan Quoc</option>
+                    <option value="HaNoi">Ha Noi</option>
+                    <option value="HaiPhong">Hai Phong</option>
+                </select>*@
+            <select name="priceLevel" id="priceLevel">
+                <option value="-1">Giá</option>
+                <option value="1">< 500.000 vnd</option>
+                <option value="2">500.000 - 1.000.000 vnd</option>
+            </select>
+            <script>
+                document.getElementById("priceLevel").onchange = function () {
+                    document.forms["filter"].submit();
+                }
+            </script>
+        }
+    </div>
+            <div class="container" style="width: 76%; margin-left: auto; margin-right: auto; background: #efefef;height:390px">
+                Không có sản phẩm phù hợp
+            </div>  
+
+    return;
+}
 
 <div id="main" style="margin-bottom:8px">
     <div id="navigation">
         <p>Raovat</p>
         <p>>></p>
-        <p>CategoryName</p>
+        @if (ViewBag.Level == "category")
+        {
+            <p>@Model.First().SubCategory.Category.CategoryName</p>
+
+        }
+        @if (ViewBag.Level == "subcategory")
+        {
+            <p>@Model.First().SubCategory.Category.CategoryName</p>
+                <p>@Model.First().SubCategory.SubCategoryName</p>
+        }
+
     </div>
 </div>
 <div class="filter">
-    
-    <select name="province" id="provinceslt">
-        <option value="Toanquoc">Toan Quoc</option>
-        <option value="HaNoi">Ha Noi</option>
-        <option value="HaiPhong">Hai Phong</option>
-    </select>
-    <select name="province" id="provinceslt">
-        <option value="Toanquoc">Giá</option>
-        <option value="HaNoi">Ha Noi</option>
-        <option value="HaiPhong">Hai Phong</option>
-    </select>
+    @using (Html.BeginForm("Product", "Home", FormMethod.Get, new { @class = "filter", @id = "form", @name = "filter" }))
+    {
+        if (ViewBag.CurrentCategoryId != null)
+        {
+            <input type="hidden" value="@ViewBag.CurrentCategoryId" name="categoryId" />
+        }
+        if (ViewBag.CurrentSubcategoryId != null)
+        {
+            <input type="hidden" value="@ViewBag.CurrentSubcategoryId" name="subcategoryId" />
+        }
+        @*<select name="province" id="provinceslt">
+                <option value="Toanquoc">Toan Quoc</option>
+                <option value="HaNoi">Ha Noi</option>
+                <option value="HaiPhong">Hai Phong</option>
+            </select>*@
+        <select name="priceLevel" id="priceLevel">
+            <option value="-1">Giá</option>
+            <option value="1">< 500.000 vnd</option>
+            <option value="2">500.000 - 1.000.000 vnd</option>
+        </select>
+        <script>
+            document.getElementById("priceLevel").onchange = function () {
+                document.forms["filter"].submit();
+            }
+        </script>
+    }
 </div>
-@*@Html.Partial("SubCategoryList", new {categoryId = Model.First().SubCategory.CategoryId});*@
-@{ Html.RenderAction("SubCategoryList", new { categoryId = Model.First().SubCategory.CategoryId });}
 
- 
+@if (ViewBag.Level == "category")
+{
+
+    { Html.RenderAction("SubCategoryList", new { categoryId = Model.First().SubCategory.CategoryId }); }
+}
+
+
 <div class="container">
     <ul class="product-list">
-        @foreach(var item in Model)
-            {
+        @foreach (var item in Model)
+        {
 
-        <li class="product-item">
-            <a href="/Home/Detail/?productId=@item.ProductId">
-                <div class="product-img">
-                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="col-info-1">
-                        <p class="product-name">@item.ProductName</p>
-                        <p class="product-price">@item.Price đ</p>
-                        <div class="row-info">
-                            <p class="account">@item.User.UserName |</p>
-                            <p class="time">@Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
-                            <p class="address">@item.Address</p>
-                            <button type="button">
-                                <img height="20" width="20" src="~/Content/Images/save-ad.svg" alt="like">
-                            </button>
+            <li class="product-item">
+                <a href="/Home/Detail/?productId=@item.ProductId">
+                    <div class="product-img">
+                        <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
+                    </div>
+                    <div class="product-info">
+                        <div class="col-info-1">
+                            <p class="product-name">@item.ProductName</p>
+                            <p class="product-price">@item.Price đ</p>
+                            <div class="row-info">
+                                <p class="account">@item.User.UserName |</p>
+                                <p class="time">@Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                                <p class="address">@item.Address</p>
+                                <button type="button">
+                                    <img height="20" width="20" src="~/Content/Images/save-ad.svg" alt="like">
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
-        <hr width="724" style="margin:2px auto">
-            }
-        
+                </a>
+            </li>
+            <hr width="724" style="margin:2px auto">
+        }
+
     </ul>
     <div class="page-devided">
         <p class="page-number">1</p>
@@ -66,3 +138,6 @@
         <p class="page-number">4</p>
     </div>
 </div>
+@section Styles {
+    <link href="~/Content/CSS/category.css" rel="stylesheet" type="text/css" />
+}

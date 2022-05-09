@@ -13,7 +13,16 @@
             <div class="title">
                 <h3 class="user-name" style="margin-top:8px;">@Model.LastName @Model.FirstName</h3>
                 <p class="follower">10 theo dỗi</p>
+                @if(Model.UserId == (int)Session["UserId"])
+            {
+                    <a href="/User/Edit/?userId=@Session["UserId"]">
+                        Sửa hồ sơ
+                    </a>
+            }
+            else
+            {
                 <button type="button">Theo dõi</button>
+            }
             </div>
         </div>
         <div class="p-right">

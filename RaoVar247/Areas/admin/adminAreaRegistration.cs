@@ -17,8 +17,7 @@ namespace RaoVar247.Areas.admin
             context.MapRoute(
                 "admin_default",
                 "admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new[] { "RaoVat247.Areas.admin.Controllers" }
+                new { action = "Index", id = UrlParameter.Optional }
             );
         }
     }
