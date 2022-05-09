@@ -83,9 +83,13 @@ namespace RaoVar247.Controllers
 
             return View();
         }
-        public ActionResult Category(int categoryId)
+        public ActionResult Product(int categoryId,int subcategory,string province,string district,string village)
         {
             return View(db.Products.Where(c=>c.SubCategory.CategoryId == categoryId).ToList());
+        }
+        public ActionResult Productint(int subcategory)
+        {
+            return View();
         }
         public PartialViewResult CategoryList()
         {
