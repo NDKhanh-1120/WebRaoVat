@@ -1,12 +1,19 @@
-﻿@model RaoVar247.Models.Product
+﻿@model IEnumerable<RaoVar247.Models.Product>
 @{
     ViewBag.Title = "Subcategory";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-
+<div id="main" style="margin-bottom:8px">
+    <div id="navigation">
+        <p>Raovat</p>
+        <p>>></p>
+        <p>CategoryName</p>
+    </div>
+</div>
 <div class="filter">
+    
     <select name="province" id="provinceslt">
         <option value="Toanquoc">Toan Quoc</option>
         <option value="HaNoi">Ha Noi</option>
@@ -17,67 +24,45 @@
         <option value="HaNoi">Ha Noi</option>
         <option value="HaiPhong">Hai Phong</option>
     </select>
-    @Html.DropDownList("Address", null, htmlAttributes: new { @class = "form-control" })
-    @Html.DropDownList("Price", null, htmlAttributes: new { @class = "form-control" })
-
 </div>
-    <div id="main">
-        <div id="navigation">
-            <p>Raovat</p>
-            <p>>></p>
-            <p>CategoryName</p>
-        </div>
-        <div id="brand-list">
-            <ul>
-                <li>
-                    <img src="/under-the-sea.jpg" alt="">
-                    <p>Name</p>
-                </li>
-                <li>
-                    <img src="/under-the-sea.jpg" alt="">
-                    <p>Name</p>
-                </li>
-                <li>
-                    <img src="/under-the-sea.jpg" alt="">
-                    <p>Name</p>
-                </li>
-                <li>
-                    <img src="/under-the-sea.jpg" alt="">
-                    <p>Name</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="container">
-        <ul class="product-list">
-            <hr width="724">
-            <li class="product-item">
-                <a href="">
-                    <div class="product-img">
-                        <img src="/model.jpg" alt="">
-                    </div>
-                    <div class="product-info">
-                        <div class="col-info-1">
-                            <p class="product-name">Product Name</p>
-                            <p class="product-price">1.000 đ</p>
-                            <div class="row-info">
-                                <p class="account">Nguyen Duy Khanh |</p>
-                                <p class="time">1 ngày trước |</p>
-                                <p class="address">Hà Nội</p>
-                                <button type="button">
-                                    <img src="/model.jpg" alt="">
-                                </button>
-                            </div>
+@*@Html.Partial("SubCategoryList", new {categoryId = Model.First().SubCategory.CategoryId});*@
+@{ Html.RenderAction("SubCategoryList", new { categoryId = Model.First().SubCategory.CategoryId });}
+
+ 
+<div class="container">
+    <ul class="product-list">
+        @foreach(var item in Model)
+            {
+
+        <li class="product-item">
+            <a href="/Home/Detail/?productId=@item.ProductId">
+                <div class="product-img">
+                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
+                </div>
+                <div class="product-info">
+                    <div class="col-info-1">
+                        <p class="product-name">@item.ProductName</p>
+                        <p class="product-price">@item.Price đ</p>
+                        <div class="row-info">
+                            <p class="account">@item.User.UserName |</p>
+                            <p class="time">@Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                            <p class="address">@item.Address</p>
+                            <button type="button">
+                                <img height="20" width="20" src="~/Content/Images/save-ad.svg" alt="like">
+                            </button>
                         </div>
                     </div>
-                </a>
-            </li>
-        </ul>
-        <div class="page-devided">
-            <p class="page-number">1</p>
-            <p class="page-number">2</p>
-            <p class="page-number">3</p>
-            <p class="page-number">4</p>
-        </div>
+                </div>
+            </a>
+        </li>
+        <hr width="724" style="margin:2px auto">
+            }
+        
+    </ul>
+    <div class="page-devided">
+        <p class="page-number">1</p>
+        <p class="page-number">2</p>
+        <p class="page-number">3</p>
+        <p class="page-number">4</p>
     </div>
-
+</div>

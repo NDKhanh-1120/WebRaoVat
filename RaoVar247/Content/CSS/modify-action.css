@@ -1,0 +1,28 @@
+.delete-confirm-cell {
+    position: absolute;
+    height:150px;
+    width:300px;
+    border: 1px solid #F17F3F;
+    right:4px;
+    background-color: #fdfdfd;
+    display:none;
+}
+form.delete-confirm {
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+}
+.hide {
+    display: none;
+}
+form.delete-confirm input[type="submit"],input[type="button"]{
+    height:44px;
+    width:88px;
+    border-radius: 8px;
+}
+form.delete-confirm input[type="submit"] {
+    background: #d11818;
+}
+form.delete-confirm input.dispose {
+    background-color: #7e7e7e;
+}

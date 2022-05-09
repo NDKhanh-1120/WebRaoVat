@@ -92,7 +92,16 @@ namespace RaoVar247.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public ActionResult Profile(string userName)
+        public ActionResult Profile(int userId)
+        {
+            return View(db.Users.FirstOrDefault(u => u.UserId == userId));
+        }
+        public PartialViewResult ProfileColumn(int userId)
+        {
+            return PartialView(db.Users.FirstOrDefault(u => u.UserId == userId));
+        }
+
+        public ActionResult Search(string searchstring)
         {
             return View();
         }

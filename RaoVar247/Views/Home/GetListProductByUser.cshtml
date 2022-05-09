@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RaoVar247.Models.Product>
+
+<ul class="product-list-p">
+    @foreach (var item in Model)
+    {
+        <li class="product-item-p">
+            <a href="/Home/Detail/?productId=@item.ProductId">
+                <div class="product-img">
+                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
+                </div>
+                <div class="product-info">
+                    <div class="col-info-1">
+                        <p class="product-name">@item.ProductName</p>
+                        <p class="product-price">@item.Price đ</p>
+                        <div class="row-info">
+                            <p class="account">@item.User.UserName |</p>
+                            <p class="time"> @Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                            <p class="address">@item.Address</p>
+                            <button type="button">
+                                <img src="~/Content/Images/save-ad.svg" width="16px" height="16px" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <hr style="margin:4px 0;">
+    }
+</ul>

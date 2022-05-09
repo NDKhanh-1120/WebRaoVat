@@ -1,0 +1,79 @@
+#content {
+    background-color: inherit;
+    padding: 32px;
+    width:100%;
+}
+
+.button {
+    border-radius: 8px;
+}
+tbody td {
+    text-align: center;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+th, td{
+    border: 1px solid #606060;
+}
+thead {
+    height: 44px;
+    border-radius: 8px;
+    color: #fc6006;
+}
+thead th {
+    padding: 0 12px;
+}
+tbody td a.subcategory-button {
+    background: #ff2d2d;
+    padding: 8px 12px;
+
+}
+td img {
+    width: 20%;
+}
+
+#content nav#breadcumb {
+    display: inline-block;
+}
+#content nav#breadcumb ul li {
+    display: inline-block;
+
+}
+#content nav#breadcumb ul {
+    padding-left: 12px;
+    margin: 32px auto;
+}
+#content .create-button {
+    display: inline-block;
+    margin-left: 1050px;
+    height: 44px;
+}
+#content .create-button a {
+    background-color: #F17F3F;
+    padding: 8px 12px;
+}
+.modify-button ul {
+    padding: 0 12px;
+}
+.modify-button ul li {
+    display: inline-block;
+    width: 44px;
+    height: 32px;
+}
+.modify-button ul li a{
+    color: white;
+    width: inherit;
+    height: inherit;
+    display: block;
+    line-height: 32px;
+}
+
+.modify-button ul li.edit-button a {
+    background-color: #4769E2;
+}
+.modify-button ul li.delete-button a {
+    background-color: #E51D1D;
+}

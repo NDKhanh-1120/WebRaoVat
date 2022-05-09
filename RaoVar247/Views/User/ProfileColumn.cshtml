@@ -1,0 +1,20 @@
+﻿@model RaoVar247.Models.User
+
+
+<div class="right-info">
+    <div class="contact-user">
+        <div class="row">
+            <img src="~/Content/Images/under-the-sea.jpg" alt="" style="width:32px;height:32px;border-radius:50%;color: #000;">
+            <p class="username">@Model.LastName @Model.FirstName</p>
+        </div>
+        <div class="row">
+            <a href="/User/Profile/?userId=@Model.UserId" class="profile" style="flex-basis: 40%">
+                <p>Xem trang</p>
+            </a>
+        </div>
+        <div class="row phonenumber">
+            <p>@Model.PhoneNumber</p>
+        </div>
+
+    </div>
+</div>

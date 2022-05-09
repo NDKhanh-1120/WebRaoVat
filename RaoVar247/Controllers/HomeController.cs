@@ -83,13 +83,21 @@ namespace RaoVar247.Controllers
 
             return View();
         }
-        public ActionResult Category()
+        public ActionResult Category(int categoryId)
         {
-            return View();
+            return View(db.Products.Where(c=>c.SubCategory.CategoryId == categoryId).ToList());
         }
         public PartialViewResult CategoryList()
         {
             return PartialView(db.Categories.ToList());
+        }
+        public PartialViewResult SubcategoryList(int categoryId)
+        {
+            return PartialView(db.SubCategories.Where(sc => sc.CategoryId == categoryId).ToList());
+        }
+        public PartialViewResult GetListProductByUser(int userId)
+        {
+            return PartialView(db.Products.Where(p=>p.UserId == userId).ToList());
         }
     }
 }

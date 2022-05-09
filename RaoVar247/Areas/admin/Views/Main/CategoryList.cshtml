@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RaoVar247.Models.Category>
+
+<table>
+    <thead>
+    <th>Mã danh mục</th>
+    <th>Tên danh mục</th>
+    <th>Hình ảnh</th>
+    <th>Danh mục con</th>
+    <th><p id="whitespaceforbutton">Hoạt động</p></th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td>
+                    <td><img src="~/Content/Images/viettelpay.png" alt="" style="display:block;margin:0 auto;"></td>
+                    <td><a href="" class="button subcategory-button">Danh mục con</a></td>
+                    <td class="modify-button">
+                        <ul>
+                            <li class="edit-bt"><button href="" class="edit-button button">Sửa</button></li>
+                            <li class="delete-bt">
+                                <button href="" class="delete-button button">Xóa</button>
+                                <div class="delete-confirm-cell">
+                                    <h4>Xác nhận xóa ?</h4>
+                                    <form action="" class="delete-confirm">
+                                        <input type="text" name="category-code" id="" class="hide">
+                                        <input type="submit" value="Xóa">
+                                        <input type="button" value="Hủy" class="dispose">
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

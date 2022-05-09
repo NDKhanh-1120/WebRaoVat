@@ -1,8 +1,48 @@
-﻿
+﻿@model RaoVar247.Models.Product
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
+<div id="main">
+    <div id="navigation">
+        <p>Raovat</p>
+        <p>>></p>
+        <p>CategoryName</p>
+    </div>
 
+
+    <div class="container-d">
+        <div class="main-detail">
+            <div class="content">
+                <img src="@Url.Content("~/Content/Images/" + Model.ImagePath)" alt="" style="max-width:800px;max-height:800px">
+                <div class="product-name">@Model.ProductName</div>
+                <div class="product-price">@Model.Price đ</div>
+                <ul class="detail-info">
+                    <li>Bán kia seltos bản deluxe sản xuất 12/2020</li>
+                    <li> đăng ký tên cá nhân</li>
+                    <li>odo 10.000km xe như mới</li>
+                    <li> cam kết không lỗi</li>
+                    <li>    bao check mọi nơi bên mua yêu cầu</li>
+                    <li>   hồ sơ cầm tay về chỉ việc bấm biển mới</li>
+                    <li>  giá chỉ 6xx</li>
+                    <li> hỗ trợ vay bank trên cả nước 70%</li>
+                    <li>    hỗ trợ vận chuyển giao xe tận nơi trên cả nước</li>
+                    <li>   call trực tiếp để có giá tốt</li>
+                    <li>   xem xe tại #Hà_nội</li>
+                </ul>
+                <hr>
+                <div class="address-info">
+                    <p>Địa chỉ : @Model.Address</p>
+                </div>
+            </div>
+        </div>
+        @{ Html.RenderAction("ProfileColumn", "User", new {userId = Model.UserId});}
+  
+    </div>
+
+</div>
+
+@section Styles {
+    <link href="~/Content/CSS/detail.css" rel="stylesheet" type="text/css" />
+}

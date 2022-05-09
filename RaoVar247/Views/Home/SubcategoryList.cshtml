@@ -1,0 +1,24 @@
+﻿@model IEnumerable<RaoVar247.Models.SubCategory>
+
+
+
+<div class="wrapperOverflow___2yi1D" style="width: 76%;margin:0 auto">
+    <div class="oneRowContent___FPDqc">
+        <a class="Categories__WrapperCat-prx11j-6 bRmMXH flex">
+            @foreach (var item in Model)
+            {
+                <li class="Categories__Item-prx11j-2 hOTlKy slider-item" style="width: 137.143px;">
+                    <a aria-label="@item.SubCategoryName"
+                       href="https://xe.chotot.com/mua-ban-oto" class="Categories__A-prx11j-5 bReYvU flex">
+                        <img src="https://static.chotot.com/storage/new-logos/VEH/2010.svg"
+                             class="Categories__CategoryImg-prx11j-4 klrkzD flex">
+                        <div class="flex flex-col flex-auto">
+                            <span class="Categories__CategoryText-prx11j-3 czewFw">@item.SubCategoryName</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            </a>
+    </div><i class="i-prev iconPrev___Eqqj4 false" tabindex="0" role="button" aria-label="Prev"></i><i class="i-next iconNext___1L-Xe false" tabindex="0" role="button" aria-label="Next"></i>
+</div>
+            

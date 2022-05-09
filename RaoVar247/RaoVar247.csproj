@@ -130,7 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
-    <Compile Include="Areas\admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\admin\Controllers\MainController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,8 +164,21 @@
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\simplebar%281%29.css" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\simplebar.css" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\style.css" />
+    <Content Include="Content\CSS\board.css" />
+    <Content Include="Content\CSS\category.css" />
+    <Content Include="Content\CSS\common.css" />
+    <Content Include="Content\CSS\detail.css" />
     <Content Include="Content\CSS\drop-down.css" />
     <Content Include="Content\CSS\login.css" />
+    <Content Include="Content\CSS\modal-form.css" />
+    <Content Include="Content\CSS\modify-action.css" />
+    <Content Include="Content\CSS\profile.css" />
+    <Content Include="Content\Images\da.jpg" />
+    <Content Include="Content\Images\model.jpg" />
+    <Content Include="Content\Images\save-ad.svg" />
+    <Content Include="Content\Images\select-image-vector-12503576.jpg" />
+    <Content Include="Content\Images\under-the-sea.jpg" />
+    <Content Include="Content\Images\viettelpay.png" />
     <Content Include="Content\modal.css" />
     <Content Include="Content\post.css" />
     <Content Include="Content\select-image-vector-12503576.jpg" />
@@ -180,7 +193,7 @@
     <Content Include="Areas\admin\Views\web.config" />
     <Content Include="Areas\admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Main\Index.cshtml" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\analytics.js.download" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\chart.min.js.download" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\coreui-chartjs.js.download" />
@@ -193,6 +206,8 @@
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\prism-unescaped-markup.min.js.download" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\prism.js.download" />
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\simplebar.min.js.download" />
+    <Content Include="Areas\admin\Views\Main\CategoryManage.cshtml" />
+    <Content Include="Areas\admin\Views\Main\CategoryList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -203,7 +218,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\modify-action.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,11 +241,15 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\CategoryList.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\SubcategoryList.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\ProfileColumn.cshtml" />
+    <Content Include="Views\Home\GetListProductByUser.cshtml" />
+    <Content Include="Views\User\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\admin\Data\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

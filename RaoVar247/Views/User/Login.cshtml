@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container" style="height:536px">
+<div class="container-login" style="height:536px">
     @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @id = "form" }))
     {
         @Html.AntiForgeryToken()

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="~/Content/modal.css">
     <link rel="stylesheet" href="~/Content/CSS/login.css">
     <link rel="stylesheet" href="~/Content/CSS/drop-down.css">
-
+    <link href="~/Content/CSS/category.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
     <style>
         body {
             background-image: url(/Content/bgw2.jpg);
@@ -56,7 +57,7 @@
                                     <li> <a href="">Bài đăng của bạn</a> </li>
                                     <li> <a href="">Tin đã lưu</a> </li>
                                     <li> <a href="">Đổi mật khẩu</a></li>
-                                    <li> <a href="">Đẵng xuất</a> </li>
+                                    <li> <a href="/User/Logout">Đẵng xuất</a> </li>
                                 </ul>
                             </div>
                         }
@@ -83,6 +84,7 @@
         <div id="poster">
             <img src="/poster.jpg" alt="">
         </div>
+
         @RenderBody();
 
         <footer>

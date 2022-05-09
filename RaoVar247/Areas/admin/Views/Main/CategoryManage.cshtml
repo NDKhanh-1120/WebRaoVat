@@ -1,0 +1,49 @@
+﻿@model RaoVar247.Models.Category 
+@{
+    ViewBag.Title = "CategoryManage";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="content">
+
+    <div class="create-button">
+        <button href="#" class="button" id="create-bt" style="background-color: #fc6006;color:#fff">Tạo mới</button>
+    </div>
+    <div id="table">
+        @{ Html.RenderAction("CategoryList", "Home");}
+    </div>
+</div>
+
+<div id="modal">
+    <div id="modal-form">
+        @using (Html.BeginForm("CategoryManage", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+                <h2 class="form-title">Tạo mới danh mục</h2>
+                <hr style="width: 90%;margin: 0 auto;">
+                <div class="row-control">
+                    <label for="">Mã danh mục</label>
+                    <input type="text" name="" id="">
+                    @Html.LabelFor(model => model.CategoryId)
+                    @Html.TextBoxFor(model => model.CategoryId, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="row-control">
+                    @*<label for="">Tên danh mục</label>
+                    <input type="text" name="" id="">*@
+                    @Html.LabelFor(model => model.CategoryName)
+                    @Html.TextBoxFor(model => model.CategoryName, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+                <div class="row-control">
+                    <input id="modal-submit-button" name="modal-submit-button" value="" type="submit" value="Submit" style="float:right;height:36px;width:120px">
+                </div>
+        }
+    </div> 
+</div>
+<script src="~/Scripts/modal.js"></script>
+<script src="~/Scripts/modify-action.js"></script>
+

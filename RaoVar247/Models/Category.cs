@@ -16,9 +16,11 @@ namespace RaoVar247.Models
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required(ErrorMessage = "Không ???c ?? tr?ng !")]
         public int CategoryId { get; set; }
 
         [StringLength(20)]
+        [Required(ErrorMessage = "Không ???c ?? tr?ng !")]
         public string CategoryName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
