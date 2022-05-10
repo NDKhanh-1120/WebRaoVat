@@ -26,10 +26,15 @@ for(var dCCell of deleteConfirmCells) {
 
 const editBTs = document.querySelectorAll(".edit-button");
 for(var editBT of editBTs){
-    editBT.addEventListener("click", function() {
+    editBT.addEventListener("click", function(event) {
         formTitle.innerHTML = "Sửa danh mục"
         modalForm.elements["modal-submit-button"].value = "Cập nhật"
         modal.style.display = "flex";
+
+        modalForm.action = "/admin/Home/EditCategory";
+
+        var tr = editBT.closest("tr");
+        modalForm.elements["CatgoryID"].value = editBT.closest("tr")[0];
     })
 }
 // const deleteConfirms = document.querySelectorAll("form.delete-confirm")

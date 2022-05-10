@@ -160,6 +160,6 @@ C:\Users\Admin\source\repos\RaoVar247\RaoVar247\bin\Newtonsoft.Json.xml
 C:\Users\Admin\source\repos\RaoVar247\RaoVar247\bin\Antlr3.Runtime.pdb
 C:\Users\Admin\source\repos\RaoVar247\RaoVar247\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Admin\source\repos\RaoVar247\RaoVar247\obj\Debug\RaoVar247.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\RaoVar247\RaoVar247\obj\Debug\RaoVar247.csproj.CopyComplete
 C:\Users\Admin\source\repos\RaoVar247\RaoVar247\obj\Debug\RaoVar247.dll
 C:\Users\Admin\source\repos\RaoVar247\RaoVar247\obj\Debug\RaoVar247.pdb
-C:\Users\Admin\source\repos\RaoVar247\RaoVar247\obj\Debug\RaoVar247.csproj.AssemblyReference.cache

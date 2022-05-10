@@ -23,11 +23,12 @@
                                 <button href="" class="delete-button button">Xóa</button>
                                 <div class="delete-confirm-cell">
                                     <h4>Xác nhận xóa ?</h4>
-                                    <form action="" class="delete-confirm">
-                                        <input type="text" name="category-code" id="" class="hide">
-                                        <input type="submit" value="Xóa">
-                                        <input type="button" value="Hủy" class="dispose">
-                                    </form>
+                                    @using (Html.BeginForm("DeleteCategory", "Main", FormMethod.Post, new { @class = "delete-confirm" }))
+                                        {
+                                            <input type="hidden" name="categoryId" id="" value="@item.CategoryId">
+                                            <input type="submit" value="Xóa">
+                                            <input type="button" value="Hủy" class="dispose">
+                                        }
                                 </div>
                             </li>
                         </ul>

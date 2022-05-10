@@ -5,10 +5,10 @@ var modal = document.getElementById("modal");
 const formTitle = document.querySelector(".form-title");
 const modalSubmitBT = document.getElementById("model-submit-button");
 createBT.addEventListener("click", function(e) {
-    formTitle.innerHTML = "Tạo mới danh mục"
-    //modalSubmitBT.value = "Tạo"
-    modalForm.elements["modal-submit-button"].value = "Tạo"
     modal.style.display = "flex";
+    formTitle.innerHTML = "Tạo mới danh mục"
+    modalForm.elements["modal-submit-button"].value = "Tạo"
+    console.log("create");
 })
 //click ra ngoai de tat form
 modal.addEventListener("click", function(){

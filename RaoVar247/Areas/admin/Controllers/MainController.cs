@@ -1,4 +1,5 @@
 ﻿using RaoVar247.Models;
+using RaoVar247.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,15 +28,29 @@ namespace RaoVar247.Areas.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CategoryManage(Category category)
+        public ActionResult CreateCategory(Category category)
         {
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);
                 db.SaveChanges();
-
             }
-                return View();
+            return RedirectToAction("CategoryManage");
+        }
+        [HttpPost]
+        public ActionResult DeleteCategory(int categoryId)
+        {
+            try
+            {
+                CategoryServices.DeleteCategory(categoryId);
+                TempData["Nofi"] = "Xóa danh mục thành công! ";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return RedirectToAction("CategoryManage");
         }
     }
 }
