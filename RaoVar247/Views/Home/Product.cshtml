@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<RaoVar247.Models.Product>
+
 @{
-    ViewBag.Title = "Subcategory";
+    ViewBag.Title = "RaoVat247";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,60 +10,186 @@
     <div id="navigation">
         <p>Raovat</p>
         <p>>></p>
-        <p>CategoryName</p>
+
     </div>
 </div>
 <div class="filter">
-    
-    <select name="province" id="provinceslt">
-        <option value="Toanquoc">Toan Quoc</option>
-        <option value="HaNoi">Ha Noi</option>
-        <option value="HaiPhong">Hai Phong</option>
-    </select>
-    <select name="province" id="provinceslt">
-        <option value="Toanquoc">Giá</option>
-        <option value="HaNoi">Ha Noi</option>
-        <option value="HaiPhong">Hai Phong</option>
-    </select>
-</div>
-@*@Html.Partial("SubCategoryList", new {categoryId = Model.First().SubCategory.CategoryId});*@
-@{ Html.RenderAction("SubCategoryList", new { categoryId = Model.First().SubCategory.CategoryId });}
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "filter", @id = "form", @name = "filter" }))
+    {
+        if (ViewBag.CurrentCategoryId != null)
+        {
+            <input type="hidden" value="@ViewBag.CurrentCategoryId" name="categoryId" />
+        }
+        if (ViewBag.CurrentSubcategoryId != null)
+        {
+            <input type="hidden" value="@ViewBag.CurrentSubcategoryId" name="subcategoryId" />
+        }
 
- 
-<div class="container">
-    <ul class="product-list">
-        @foreach(var item in Model)
+        <select name="calc_shipping_provinces" id="calc_shipping_provinces" onchange="this.form.submit()">
+            <option value="">Tỉnh / Thành phố</option>
+        </select>
+        <select name="calc_shipping_district" required="" id="calc_shipping_district" onchange="this.form.submit()">
+            <option value="">Quận / Huyện</option>
+        </select>
+        <input class="billing_address_1" name="" type="hidden" value="">
+        <input class="billing_address_2" name="" type="hidden" value="">
+        <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
+        <script>
+            //<![CDATA[
+            if (address_2 = localStorage.getItem('address_2_saved')) {
+                $('select[name="calc_shipping_district"] option').each(function () {
+                    if ($(this).text() == address_2) {
+                        $(this).attr('selected', '')
+                    }
+                })
+                $('input.billing_address_2').attr('value', address_2)
+            }
+            if (district = localStorage.getItem('district')) {
+                $('select[name="calc_shipping_district"]').html(district)
+                $('select[name="calc_shipping_district"]').on('change', function () {
+                    var target = $(this).children('option:selected')
+                    target.attr('selected', '')
+                    $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+                    address_2 = target.text()
+                    $('input.billing_address_2').attr('value', address_2)
+                    district = $('select[name="calc_shipping_district"]').html()
+                    localStorage.setItem('district', district)
+                    localStorage.setItem('address_2_saved', address_2)
+                })
+            }
+            $('select[name="calc_shipping_provinces"]').each(function () {
+                var $this = $(this),
+                    stc = ''
+                c.forEach(function (i, e) {
+                    e += +1
+                    stc += '<option value=' + e + '>' + i + '</option>'
+                    $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
+                    if (address_1 = localStorage.getItem('address_1_saved')) {
+                        $('select[name="calc_shipping_provinces"] option').each(function () {
+                            if ($(this).text() == address_1) {
+                                $(this).attr('selected', '')
+                            }
+                        })
+                        $('input.billing_address_1').attr('value', address_1)
+                    }
+                    $this.on('change', function (i) {
+                        i = $this.children('option:selected').index() - 1
+                        var str = '',
+                            r = $this.val()
+                        if (r != '') {
+                            arr[i].forEach(function (el) {
+                                str += '<option value="' + el + '">' + el + '</option>'
+                                $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>' + str)
+                            })
+                            var address_1 = $this.children('option:selected').text()
+                            var district = $('select[name="calc_shipping_district"]').html()
+                            localStorage.setItem('address_1_saved', address_1)
+                            localStorage.setItem('district', district)
+                            $('select[name="calc_shipping_district"]').on('change', function () {
+                                var target = $(this).children('option:selected')
+                                target.attr('selected', '')
+                                $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+                                var address_2 = target.text()
+                                $('input.billing_address_2').attr('value', address_2)
+                                district = $('select[name="calc_shipping_district"]').html()
+                                localStorage.setItem('district', district)
+                                localStorage.setItem('address_2_saved', address_2)
+                            })
+                        } else {
+                            $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>')
+                            district = $('select[name="calc_shipping_district"]').html()
+                            localStorage.setItem('district', district)
+                            localStorage.removeItem('address_1_saved', address_1)
+                        }
+                    })
+                })
+            })
+            //]]></script>
+        <select name="priceLevel" id="priceLevel" onchange="this.form.submit()">
+            <option value="-1">Giá</option>
+            <option value="1">< 500.000 vnd</option>
+            <option value="2">500.000 - 1.000.000 vnd</option>
+        </select>
+        @*<script>
+            function submit() {
+                document.forms["filter"].submit();
+            }
+            //document.getElementById("priceLevel").onchange = submit();
+            //document.getElementById("calc_shipping_provinces").onchange = submit();
+            //document.getElementById("calc_shipping_district").onchange = submit();
+        </script>*@
+    }
+</div>
+
+
+
+
+
+
+@if (Model.Count() == 0)
+{
+    <div class="container" style="width: 76%; margin-left: auto; margin-right: auto; background: #efefef;height:390px">
+        Không có sản phẩm phù hợp
+    </div>
+
+}
+else
+{
+    if(ViewBag.Level == "subcategory")
+    {
+        Html.RenderAction("SubcategoryList", new { categoryId = @ViewBag.CurrentCategoryId });
+    }
+
+    <div class="container">
+        <ul class="product-list">
+
+            @foreach (var item in Model)
             {
 
-        <li class="product-item">
-            <a href="/Home/Detail/?productId=@item.ProductId">
-                <div class="product-img">
-                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="col-info-1">
-                        <p class="product-name">@item.ProductName</p>
-                        <p class="product-price">@item.Price đ</p>
-                        <div class="row-info">
-                            <p class="account">@item.User.UserName |</p>
-                            <p class="time">@Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
-                            <p class="address">@item.Address</p>
-                            <button type="button">
-                                <img height="20" width="20" src="~/Content/Images/save-ad.svg" alt="like">
-                            </button>
+                <li class="product-item">
+                    <a href="/Home/Detail/?productId=@item.ProductId">
+                        <div class="product-img">
+                            <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
                         </div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <hr width="724" style="margin:2px auto">
+                        <div class="product-info">
+                            <div class="col-info-1">
+                                <p class="product-name">@item.ProductName</p>
+                                <p class="product-price">@item.Price đ</p>
+                                <div class="row-info">
+                                    <p class="account">@item.User.LastName @item.User.FirstName |</p>
+                                    <p class="time">@Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                                    <p class="address">@item.District</p>
+                                    @if (Session["UserId"] != null)
+                                    {
+                                        <button type="button" onclick="location.href='@Url.Action("AddToWishList", "User",new {userId = (int)Session["UserId"], productId = item.ProductId})'">
+                                            <img src="~/Content/Images/save-ad.svg" alt="like" width="25px"/>
+                                        </button>
+                                    }
+                                    else
+                                    {
+
+                                        <button type="button" onclick="location.href=@Url.Action("Login", "User")">
+                                            <img src="~/Content/Images/save-ad.svg" alt="like" width="25px"/>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <hr width="724" style="margin:2px auto">
             }
-        
-    </ul>
-    <div class="page-devided">
-        <p class="page-number">1</p>
-        <p class="page-number">2</p>
-        <p class="page-number">3</p>
-        <p class="page-number">4</p>
+
+        </ul>
+        <div class="page-devided">
+            <p class="page-number">1</p>
+            <p class="page-number">2</p>
+            <p class="page-number">3</p>
+            <p class="page-number">4</p>
+        </div>
     </div>
-</div>
+}
+
+@section Styles {
+    <link href="~/Content/CSS/category.css" rel="stylesheet" type="text/css" />
+}

@@ -8,17 +8,23 @@
             @foreach (var item in Model)
             {
                 <li class="Categories__Item-prx11j-2 hOTlKy slider-item" style="width: 137.143px;">
-                    <a aria-label="@item.SubCategoryName"
-                       href="https://xe.chotot.com/mua-ban-oto" class="Categories__A-prx11j-5 bReYvU flex">
-                        <img src="https://static.chotot.com/storage/new-logos/VEH/2010.svg"
-                             class="Categories__CategoryImg-prx11j-4 klrkzD flex">
-                        <div class="flex flex-col flex-auto">
-                            <span class="Categories__CategoryText-prx11j-3 czewFw">@item.SubCategoryName</span>
-                        </div>
+                    <a aria-label="@item.SubCategoryName" href="/Product/Index/?subcategoryId=@item.SubCategoryId" class="Categories__A-prx11j-5 bReYvU flex">
+                        @if (String.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="@Url.Content("~/Content/Images/R.png")" class="Categories__CategoryImg-prx11j-4 klrkzD flex"/>
+                        }
+                        else
+                        {
+                        <img src="@Url.Content("~/Content/Images/"+ item.Image)" class="Categories__CategoryImg-prx11j-4 klrkzD flex" />
+                        }
+                           
+                            <div class="flex flex-col flex-auto">
+                                <span class="Categories__CategoryText-prx11j-3 czewFw">@item.SubCategoryName</span>
+                            </div>
                     </a>
                 </li>
             }
-            </a>
+         </a>
     </div><i class="i-prev iconPrev___Eqqj4 false" tabindex="0" role="button" aria-label="Prev"></i><i class="i-next iconNext___1L-Xe false" tabindex="0" role="button" aria-label="Next"></i>
 </div>
             

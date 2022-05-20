@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RaoVar247.Models.SubCategory>
+
+<table>
+    <thead>
+    <th>Mã danh mục con</th>
+    <th>Tên danh mục con</th>
+    <th>Hình ảnh</th>
+    <th><p id="whitespaceforbutton">Hoạt động</p></th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SubCategoryId</td>
+                <td>@item.SubCategoryName</td>
+                <td>
+                    @if (String.IsNullOrEmpty(item.Image))
+                {
+                    <img src="~/Content/Images/R.png" alt="" style="display:block;margin:0 auto;">
+                }
+                    else
+                {
+                    <img src="@Url.Content("~/Content/Images/"+item.Image)" alt="" style="display:block;margin:0 auto;">
+                }
+                </td>
+                <td class="modify-button">
+                    <ul>
+                        <li class="delete-bt">
+                            <button href="" class="delete-button button">Xóa</button>
+                            <div class="delete-confirm-cell">
+                                <h4>Xác nhận xóa ?</h4>
+                                @using (Html.BeginForm("DeleteSubcategory", "Main", FormMethod.Post, new { @class = "delete-confirm" }))
+                                {
+                                    
+                                    <input type="hidden" name="categoryId" id="" value="@item.CategoryId">
+                                    <input type="hidden" name="subcategoryId" id="" value="@item.SubCategoryId">
+                                    <input type="submit" value="Xóa">
+                                    <input type="button" value="Hủy" class="dispose">
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+    

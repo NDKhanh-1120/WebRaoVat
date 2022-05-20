@@ -17,8 +17,17 @@ namespace RaoVar247
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "RaoVat247.Controllers" }
+                namespaces: new[] { "RaoVar247.Controllers" }
+
             );
+            routes.MapRoute(
+                name: "adminDefault",
+                url: "admin/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "RaoVar247.Areas.admin.Controllers" }
+
+            );
+      
         }
     }
 }

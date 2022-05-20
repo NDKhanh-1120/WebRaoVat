@@ -1,5 +1,6 @@
 .container {
-    width:900px;
+    height: 2020px;
+    width: 900px;
     margin: 0 auto;
 }
 .profile {
@@ -14,7 +15,12 @@
     width: 80px;
     border-radius:8px;
     border: 1px solid #d5d5d5;
+    background-color: #fff;
 }
+    .profile .p-left button:hover {
+        background-color: #F57229;
+        color:#fff;
+    }
 .profile .p-right{
     border-left: 1px solid #d5d5d5;
     padding-left: 12px;
@@ -81,3 +87,10 @@
         font-size: 16px;
         color: #c90927;
     }
+.hideat {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+}

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RaoVar247.Models;
+using PagedList;
 namespace RaoVar247.Controllers
 {
     public class HomeController : Controller
@@ -13,14 +14,14 @@ namespace RaoVar247.Controllers
         Db db = new Db();
         public ActionResult Index()
         {
-            var list = db.Products.ToList();
+            var list = db.Products.ToList().Take(20);
             return View(list);
         }
         public ActionResult PostNewProduct()
         {
             if(Session["UserName"] != null)
             {
-                ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName");
+                ViewBag.SubCategoryId = new SelectList(db.SubCategories.OrderBy(s=>s.SubCategoryId), "SubCategoryId", "SubCategoryName");
                 return View();
             }
             else
@@ -31,7 +32,7 @@ namespace RaoVar247.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PostNewProduct(Product product)
+        public ActionResult PostNewProduct(Product product,FormCollection fc)
         {
             //ok
             ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName");
@@ -39,13 +40,7 @@ namespace RaoVar247.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    // add data
-                    //Product product = new Product();
-                    //product.ProductName = collection["ProductName"];
-                    //product.Price = Convert.ToDecimal(collection["Price"]);
-                    //product.Description = collection["Description"];
-                    //product.Address = collection["Address"];
-                    //product.SubCategoryId = Convert.ToInt32(collection["SubCategoryId"]);
+                  
                     product.CreateDate = DateTime.Now;
                     var f = Request.Files["product-img-file"];
                     if (f != null && f.ContentLength > 0)
@@ -54,10 +49,18 @@ namespace RaoVar247.Controllers
                         string UploadPath = Server.MapPath("~/Content/Images/" + FileName);
                         f.SaveAs(UploadPath);
                         product.ImagePath = FileName;
+                        product.UserId = (int)Session["UserId"];
                     }
+                    else
+                {
+                    ViewBag.Nofi = "Bạn chưa chọn ảnh";
+                    return View();
+                }
+                    product.Province = fc["calc_shipping_provinces"];
+                    product.District = fc["calc_shipping_district"];
                     db.Products.Add(product);
                     db.SaveChanges();
-                    TempData["Nofi"] = "Added";
+                    TempData["Nofi"] = "Đăng tin thanh công";
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -70,27 +73,9 @@ namespace RaoVar247.Controllers
         }
         
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+     
+      
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        public ActionResult Product(int categoryId,int subcategory,string province,string district,string village)
-        {
-            return View(db.Products.Where(c=>c.SubCategory.CategoryId == categoryId).ToList());
-        }
-        public ActionResult Productint(int subcategory)
-        {
-            return View();
-        }
         public PartialViewResult CategoryList()
         {
             return PartialView(db.Categories.ToList());
@@ -99,9 +84,10 @@ namespace RaoVar247.Controllers
         {
             return PartialView(db.SubCategories.Where(sc => sc.CategoryId == categoryId).ToList());
         }
-        public PartialViewResult GetListProductByUser(int userId)
+        public PartialViewResult GetListProductByUser(int userId, int page = 1)
         {
-            return PartialView(db.Products.Where(p=>p.UserId == userId).ToList());
+            var list = db.Products.Where(p => p.UserId == userId).ToList();
+            return PartialView(list.ToPagedList(page,10));
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿.menu-p {
+    position: absolute;
+    display: none;
+    border: 1px solid #ff6a00;
+}
+ul {
+    list-style:none;
+    margin: 0;
+    padding:0;
+}
+.menu-p-item{
+    background-color:#fff;
+    padding:12px 32px;
+}
+.menu-p-item:hover{
+    background-color: #d5d5d5;
+}

@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container" style="height:600px">
+<div class="container-login" style="height:600px">
     <div id="form" style="height: auto;">
         <div id="content" style="width: 90%;box-sizing: content-box;padding: 20px 5%;">
             @using (Html.BeginForm("Register", "User", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
-                <img src="/bpch.jpg" alt="" width="100%" height="120px" />
+                <img src="~/Content/Images/lgo.png" alt="" width="100%"  />
                 <h3 class="title">Đăng ký</h3>
                 <div class="row-control">
                     @Html.TextBoxFor(model => model.LastName, null, new { @class = "form-control", @placeholder = "Họ, tên đệm" })
@@ -24,9 +24,9 @@
                 <div class="row-control">
                     @Html.TextBoxFor(model => model.UserName, null, new { @class = "form-control", @placeholder = "User-Name" })
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                    @if(TempData["Nofi"] == "Duplicated")
+                    @if (TempData["Nofi"] == "Duplicated")
                     {
-                       <p class="text-danger">Tên tài khoản đẽ tồn tại !</p>
+                        <p class="text-danger">Tên tài khoản đẽ tồn tại !</p>
                     }
                 </div>
                 <div class="row-control">
@@ -39,10 +39,14 @@
                 </div>
             }
             <div class="row-control center">
-                Bạn đã có tài khoản? <span><a href="">Đăng nhập</a></span>
+                Bạn đã có tài khoản? <span><a href="/User/Login">Đăng nhập</a></span>
             </div>
 
         </div>
     </div>
 </div>
 
+
+@section Styles {
+    <link href="~/Content/CSS/login.css" rel="stylesheet" type="text/css" />
+}

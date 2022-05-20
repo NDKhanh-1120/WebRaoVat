@@ -21,6 +21,9 @@ namespace RaoVar247.Models
         [StringLength(30)]
         public string SubCategoryName { get; set; }
 
+        [StringLength(100)]
+        public string Image { get; set; }
+
         public int? CategoryId { get; set; }
 
         public virtual Category Category { get; set; }

@@ -103,6 +103,7 @@ nav ul li a:hover {
 }
 #category-list #list img {
     width: 100%;
+    height:105px;
     border-radius: 80px;
 }
 #category-list #list .category-item p {
@@ -129,6 +130,9 @@ nav ul li a:hover {
 }
 #section .grid .grid-item a{
     color: #000;
+}
+#section .grid .grid-item .product-price{
+    color: #f00;
 }
 #section .grid .grid-item:hover {
     cursor: pointer;
@@ -185,7 +189,7 @@ h4 {
 }
 
 .oneRowContent___FPDqc {
-    overflow-x: auto;
+    /*overflow-x: auto;*/
     background-color: #fff;
     display: flex;
     align-items: flex-start;
@@ -256,4 +260,7 @@ h4 {
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
+}
+.pagination-container .pagination > .active > a {
+    background-color: #c90927
 }

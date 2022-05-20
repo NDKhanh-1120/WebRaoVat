@@ -29,17 +29,21 @@
                 }
             </div>
             <div class="row-control center margin-top">
-                Bạn chưa có tài khoản? <span><a href="">Đăng ký</a></span>
+                Bạn chưa có tài khoản? <span><a href="/User/Register">Đăng ký</a></span>
             </div>
 
         </div>
     }
 </div>
-    @if (TempData["RequiredLogin"] != null)
-    {
-        <div class="small-nofi">
-            <div class="nofi">@TempData["RequiredLogin"]</div>
-        </div>
-        <script src="~/Content/small-nofi.js"></script>
-    }
+@if (TempData["RequiredLogin"] != null)
+{
+    <div class="small-nofi">
+        <div class="nofi">@TempData["RequiredLogin"]</div>
+    </div>
+    <script src="~/Content/small-nofi.js"></script>
+}
 
+
+@section Styles {
+    <link href="~/Content/CSS/login.css" rel="stylesheet" type="text/css" />
+}

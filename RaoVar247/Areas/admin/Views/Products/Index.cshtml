@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RaoVar247.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+
+    
+    <div id="table">
+        <table>
+            <thead>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Danh mục</th>
+            <th><p id="whitespaceforbutton">Hoạt động</p></th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductId</td>
+                        <td>@item.ProductName</td>
+                        <td><img src="@Url.Content("~/Content/Images/"+item.ImagePath)" alt="" style="display:block;margin:0 auto;"></td>
+                        <td>@item.SubCategory.Category.CategoryName>>@item.SubCategory.SubCategoryName</td>
+                        <td accesskey=""d class="modify-button">
+                            <ul>
+                                <li class="delete-bt">
+                                    <button href="" class="delete-button button">Xóa</button>
+                                    <div class="delete-confirm-cell">
+                                        <h4>Xác nhận xóa ?</h4>
+                                        @using (Html.BeginForm("DeleteProduct", "Products", FormMethod.Post, new { @class = "delete-confirm" }))
+                                        {
+                                            <input type="hidden" name="productId" id="" value="@item.ProductId">
+                                            <input type="submit" value="Xóa">
+                                            <input type="button" value="Hủy" class="dispose">
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/modal.js"></script>
+<script src="~/Scripts/modify-action.js"></script>

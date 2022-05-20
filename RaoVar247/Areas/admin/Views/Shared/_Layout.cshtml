@@ -12,12 +12,15 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title>@ViewBag.Title</title>
     <link rel="manifest" href="https://coreui.io/demo/4.0/free/assets/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <link rel="stylesheet" href="~/Content/CoreUI Free Bootstrap Admin Template_files/simplebar.css">
     <link rel="stylesheet" href="~/Content/CoreUI Free Bootstrap Admin Template_files/simplebar(1).css">
 
@@ -25,6 +28,7 @@
 
     <link rel="stylesheet" href="~/Content/CoreUI Free Bootstrap Admin Template_files/prism.css">
     <link href="~/Content/CoreUI Free Bootstrap Admin Template_files/examples.css" rel="stylesheet">
+    @RenderSection("Styles", required: false)
 
     <script type="text/javascript" async=""
             src="~/Content/CoreUI Free Bootstrap Admin Template_files/analytics.js.download"></script>
@@ -39,13 +43,16 @@
         gtag('config', 'UA-118965717-1');
     </script>
     <link href="./CoreUI Free Bootstrap Admin Template_files/coreui-chartjs.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="~/Content/style.css" />
     <link rel="stylesheet" href="~/Content/CSS/common.css" />
     <link rel="stylesheet" href="~/Content/CSS/board.css" />
     <link rel="stylesheet" href="~/Content/CSS/modify-action.css" />
     <link rel="stylesheet" href="~/Content/CSS/modal-form.css" />
-    
+    <link rel="stylesheet" href="~/Content/modal.css">
+
+
+
 </head>
 
 <body>
@@ -72,14 +79,17 @@
                             <div class="simplebar-content" style="padding: 0px;">
             <li class="nav-title">Admin</li>
             <li class="nav-item">
-                <a class="nav-link" href="">Thống kê</a>
+                <a class="nav-link" href="@Url.Action("Statistic","Main")">Thống kê</a>
             </li>
             <li class="nav-title">Dữ liệu</li>
             <li class="nav-item">
-                <a class="nav-link" href="">Quản lý danh mục</a>
+                <a class="nav-link" href="@Url.Action("CategoryManage","Main")">Quản lý danh mục</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Các sản phẩm đã đăng</a>
+                <a class="nav-link" href="@Url.Action("Index","Products")">Các sản phẩm đã đăng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Users")">Quản lý tài khoản</a>
             </li>
             <li class="nav-title">Phản hồi</li>
             <li class="nav-item">
@@ -166,7 +176,7 @@
         </footer>
     </div>
 
-    <script src="./CoreUI Free Bootstrap Admin Template_files/coreui.bundle.min.js.download"></script>
+    @*<script src="./CoreUI Free Bootstrap Admin Template_files/coreui.bundle.min.js.download"></script>
     <script src=".~/Content/CoreUI Free Bootstrap Admin Template_files/simplebar.min.js.download"></script>
 
     <script src="./CoreUI Free Bootstrap Admin Template_files/prism.js.download"></script>
@@ -177,7 +187,7 @@
     <script src="./CoreUI Free Bootstrap Admin Template_files/chart.min.js.download"></script>
     <script src="./CoreUI Free Bootstrap Admin Template_files/coreui-chartjs.js.download"></script>
     <script src="~/Content/CoreUI Free Bootstrap Admin Template_files/coreui-utils.js.download"></script>
-    <script src=".~/Content/CoreUI Free Bootstrap Admin Template_files/main.js.download"></script>
+    <script src=".~/Content/CoreUI Free Bootstrap Admin Template_files/main.js.download"></script>*@
     <script>
     </script>
 

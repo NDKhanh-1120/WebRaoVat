@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,22 +136,37 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\admin\Controllers\MainController.cs" />
+    <Compile Include="Areas\admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Db.cs" />
+    <Compile Include="Models\Follow.cs" />
+    <Compile Include="Models\Like.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CustomImage.cs" />
+    <Compile Include="Services\ProductServices.cs" />
+    <Compile Include="Services\SubcategoryServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\avatar.png" />
+    <Content Include="Content\CSS\login-ad.css" />
+    <Content Include="Content\CSS\board2.css" />
+    <Content Include="Content\CSS\fordelete.css" />
+    <Content Include="Content\Images\3 cha,.png" />
+    <Content Include="Content\Images\avatar.png" />
     <Content Include="Content\bgw2.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -173,13 +194,17 @@
     <Content Include="Content\CSS\modal-form.css" />
     <Content Include="Content\CSS\modify-action.css" />
     <Content Include="Content\CSS\profile.css" />
+    <Content Include="Content\CSS\editprofileform.css" />
     <Content Include="Content\Images\da.jpg" />
+    <Content Include="Content\Images\lgo.png" />
     <Content Include="Content\Images\model.jpg" />
     <Content Include="Content\Images\save-ad.svg" />
     <Content Include="Content\Images\select-image-vector-12503576.jpg" />
+    <Content Include="Content\Images\square.jfif" />
     <Content Include="Content\Images\under-the-sea.jpg" />
     <Content Include="Content\Images\viettelpay.png" />
     <Content Include="Content\modal.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\post.css" />
     <Content Include="Content\select-image-vector-12503576.jpg" />
     <Content Include="Content\small-nofi.js" />
@@ -208,12 +233,27 @@
     <Content Include="Content\CoreUI Free Bootstrap Admin Template_files\simplebar.min.js.download" />
     <Content Include="Areas\admin\Views\Main\CategoryManage.cshtml" />
     <Content Include="Areas\admin\Views\Main\CategoryList.cshtml" />
+    <Content Include="Areas\admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Main\SubcategoryList.cshtml" />
+    <Content Include="Areas\admin\Views\Main\SubcategoryModal.cshtml" />
+    <Content Include="Areas\admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Main\Login.cshtml" />
+    <Content Include="Areas\admin\Views\Shared\_EmptyLayout.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\saveproduct.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -246,6 +286,11 @@
     <Content Include="Views\User\ProfileColumn.cshtml" />
     <Content Include="Views\Home\GetListProductByUser.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\User\GetListSave.cshtml" />
+    <Content Include="Views\User\SaveList.cshtml" />
+    <Content Include="Views\User\Following.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

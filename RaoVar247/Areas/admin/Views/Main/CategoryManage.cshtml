@@ -1,4 +1,4 @@
-﻿@model RaoVar247.Models.Category 
+﻿@model RaoVar247.Models.Category
 @{
     ViewBag.Title = "CategoryManage";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
@@ -11,39 +11,74 @@
         <button href="#" class="button" id="create-bt" style="background-color: #fc6006;color:#fff">Tạo mới</button>
     </div>
     <div id="table">
-        @{ Html.RenderAction("CategoryList", "Home");}
+        @if (ViewBag.Level == "subcategory")
+        {
+            { Html.RenderAction("SubcategoryList", "Main", new { categoryId = ViewBag.categoryId }); }
+
+        }
+        else
+        {
+            { Html.RenderAction("CategoryList", "Main"); }
+
+        }
     </div>
 </div>
+@if (ViewBag.Level == "subcategory")
+{
+    { Html.RenderAction("SubcategoryModal","Main"); }
+}
+else
+{
 
-<div id="modal">
-    <div id="modal-form">
-        @using (Html.BeginForm("CategoryManage", "Home", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+    <div id="modal">
+        <div id="modal-form">
+            @using (Html.BeginForm("CreateCategory", "Main", FormMethod.Post, new { name = "modal-form", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
 
                 <h2 class="form-title">Tạo mới danh mục</h2>
                 <hr style="width: 90%;margin: 0 auto;">
                 <div class="row-control">
                     <label for="">Mã danh mục</label>
-                    <input type="text" name="" id="">
-                    @Html.LabelFor(model => model.CategoryId)
                     @Html.TextBoxFor(model => model.CategoryId, null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="row-control">
-                    @*<label for="">Tên danh mục</label>
-                    <input type="text" name="" id="">*@
-                    @Html.LabelFor(model => model.CategoryName)
+                    <label for="">Tên danh mục</label>
                     @Html.TextBoxFor(model => model.CategoryName, null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                 </div>
                 <div class="row-control">
-                    <input id="modal-submit-button" name="modal-submit-button" value="" type="submit" value="Submit" style="float:right;height:36px;width:120px">
+                    <img src="~/Content/Images/select-image-vector-12503576.jpg" width="120px" id="img"/>
+                    <label for="img-file" style="cursor:pointer">Chọn ảnh</label>
+                    <input type="file" id="img-file" name="imgfile" style="display:none" onchange="displayImg(event)"/>
+                    <script>
+                        function displayImg(event) {
+                            var image = document.getElementById('img');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                    </script>
                 </div>
-        }
-    </div> 
-</div>
+                <div class="row-control">
+                    <input id="modal-submit-button" name="modal-submit-button" type="submit" value="Submit" style="float:right;height:36px;width:120px">
+                </div>
+            }
+        </div>
+    </div>
+    <script>
+       
+
+    </script>
+}
 <script src="~/Scripts/modal.js"></script>
 <script src="~/Scripts/modify-action.js"></script>
+
+@if (TempData["Nofi"] != null)
+{
+    <div class="small-nofi">
+        <div class="nofi">@TempData["Nofi"]</div>
+    </div>
+    <script src="~/Content/small-nofi.js"></script>
+}
 

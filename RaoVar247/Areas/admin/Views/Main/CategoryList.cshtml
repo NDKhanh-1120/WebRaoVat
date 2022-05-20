@@ -14,20 +14,30 @@
                 <tr>
                     <td>@item.CategoryId</td>
                     <td>@item.CategoryName</td>
-                    <td><img src="~/Content/Images/viettelpay.png" alt="" style="display:block;margin:0 auto;"></td>
-                    <td><a href="" class="button subcategory-button">Danh mục con</a></td>
+                    <td>
+                        @if (item.Image != null)
+                        {
+                            <img src="~/Content/Images/@item.Image" alt="">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/R.png" alt="" style="display:block;margin:0 auto;">
+                        }
+                    </td>
+                    <td><a href="@Url.Action("CategoryManage","Main",new {categoryId = item.CategoryId})" class="button subcategory-button">Danh mục con</a></td>
                     <td class="modify-button">
                         <ul>
                             <li class="edit-bt"><button href="" class="edit-button button">Sửa</button></li>
                             <li class="delete-bt">
-                                <button href="" class="delete-button button">Xóa</button>
+                                <button href="" class="delete-button button" onclick="">Xóa</button>
                                 <div class="delete-confirm-cell">
                                     <h4>Xác nhận xóa ?</h4>
-                                    <form action="" class="delete-confirm">
-                                        <input type="text" name="category-code" id="" class="hide">
-                                        <input type="submit" value="Xóa">
-                                        <input type="button" value="Hủy" class="dispose">
-                                    </form>
+                                    @using (Html.BeginForm("DeleteCategory", "Main", FormMethod.Post, new { @class = "delete-confirm" }))
+                                        {
+                                            <input type="hidden" name="categoryId" id="" value="@item.CategoryId">
+                                            <input type="submit" value="Xóa">
+                                            <input type="button" value="Hủy" class="dispose">
+                                        }
                                 </div>
                             </li>
                         </ul>

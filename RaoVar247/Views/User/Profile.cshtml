@@ -2,23 +2,51 @@
 @{
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="container">
     <div class="profile">
         <div class="p-left">
             <div class="avatar">
-                <img src="~/Content/Images/select-image-vector-12503576.jpg" alt="">
+                <img src="@Url.Content("~/Content/Images/" + Model.Avatar)" alt="">
             </div>
             <div class="title">
                 <h3 class="user-name" style="margin-top:8px;">@Model.LastName @Model.FirstName</h3>
-                <p class="follower">10 theo dỗi</p>
-                <button type="button">Theo dõi</button>
+                <p class="follower" id="nOFollow">@ViewBag.FollowerCount <span>theo dõi</span></p> 
+                @if (Session["UserName"] != null)
+                {
+                    if (Model.UserId == (int)Session["UserId"])
+                    {
+                        <a href="/User/Edit/?userId=@Session["UserId"]">
+                            Sửa hồ sơ
+                        </a>
+                    }
+                    else
+                    {
+                        if (ViewBag.IsFollow == true)
+                        {
+                            <button type="button" id="followBT" onclick="Follow(this.innerHTML)" style="width:88px">Đã theo dõi</button>
+                        }
+                        else
+                        {
+                            <button type="button" id="followBT" onclick="Follow(this.innerHTML)">Theo dõi</button>
+
+                        }
+                        <input type="hidden" id="userId" value="@Model.UserId" />
+                        <input type="hidden" id="myId" value="@Session["UserId"]" />
+                    }
+                }
+                else
+                {
+
+                    <button type="button" onclick="location.href='@Url.Action("Login", "User")'">Theo dõi</button>
+                }
             </div>
         </div>
         <div class="p-right">
             <p class="address">Địa Chỉ : @Model.Address</p>
-            <p class="date-join">Ngày tham gia : 1/4/2022</p>
+            <p class="date-join"> </p>
         </div>
     </div>
 
@@ -30,18 +58,49 @@
         <div class="content">
             @{ Html.RenderAction("GetListProductByUser", "Home", new { userId = Model.UserId });}
           
-            <div class="page-devided">
-                <p class="page-number">1</p>
-                <p class="page-number">2</p>
-                <p class="page-number">3</p>
-                <p class="page-number">4</p>
-            </div>
+            
         </div>
     </div>
 </div>
 
 @section Styles {
     <link href="~/Content/CSS/profile.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/CSS/fordelete.css" rel="stylesheet" type="text/css" />
 }
 
 
+<script>
+    var userId = $("#userId").val();
+    var myId = $("#myId").val();
+    function Follow(status) {
+        if (status == "Theo dõi") {
+            $.ajax({
+                type: "GET",
+                url: "/User/Follow",
+                data: { userId: userId, followerUserId: myId },
+                success: function (data) {
+                    console.log("Theo dõi")
+                }
+            });
+            $("#followBT").text("Đã theo dõi");
+            $("#nOFollow").text(parseInt($("#nOFollow").text()) + 1);
+            $("#nOFollow").text(parseInt($("#nOFollow").text()) + " theo dõi");
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                url: "/User/UnFollow",
+                data: { userId: userId, followerUserId: myId },
+                success: function (data) {
+                    console.log("Hủy theo dõi")
+                }
+            });
+            $("#followBT").text("Theo dõi");
+
+            var i = parseInt($("#nOFollow").text()) - 1;
+            $("#nOFollow").text(i+ " theo dõi");
+        }
+
+    }
+
+</script>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RaoVar247.Models.Product>
+
+@if (Model.Count() == 0)
+{
+    <ul class="product-list-p">
+
+
+        Bạn chưa lưu sản phẩm nào !
+
+        <hr style="margin:4px 0;">
+
+    </ul>
+}
+else
+{
+
+    <ul class="product-list-p">
+        @foreach (var item in Model)
+        {
+        <li class="product-item-p">
+            <a href="/Home/Detail/?productId=@item.ProductId">
+                <div class="product-img">
+                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
+                </div>
+                <div class="product-info">
+                    <div class="col-info-1">
+                        <p class="product-name">@item.ProductName</p>
+                        <p class="product-price">@item.Price đ</p>
+                        <div class="row-info">
+                            <p class="account">@item.User.UserName |</p>
+                            <p class="time"> @Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                            <p class="address">@item.Address</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <button type="button" class="saveBT" >
+                <img src="~/Content/Images/save-ad-active.svg" width="20px" height="20px" alt="ulike">
+            </button>
+            <input type="hidden" value="@item.ProductId" />
+
+        </li>
+            <hr style="margin:4px 0;">
+        }
+    </ul>
+    <input type="hidden" id="userId" value="@Session["UserId"]" />
+
+    <div class="page-devided">
+        <p class="page-number">1</p>
+        <p class="page-number">2</p>
+        <p class="page-number">3</p>
+        <p class="page-number">4</p>
+    </div>
+
+}
+<script src="~/Scripts/saveproduct.js"></script>
+<script>
+    for (var sbt of saveBTs) {
+        sbt.addEventListener("onmouseup", () => {
+            this.closest("li").remove();
+            console.log("remove")
+        })
+    }
+ 
+</script>

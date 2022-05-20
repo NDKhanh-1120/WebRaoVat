@@ -1,29 +1,85 @@
-﻿@model IEnumerable<RaoVar247.Models.Product>
+﻿@model PagedList.IPagedList<RaoVar247.Models.Product>
+@using PagedList.Mvc;
 
-<ul class="product-list-p">
-    @foreach (var item in Model)
-    {
-        <li class="product-item-p">
-            <a href="/Home/Detail/?productId=@item.ProductId">
-                <div class="product-img">
-                    <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
-                </div>
-                <div class="product-info">
-                    <div class="col-info-1">
-                        <p class="product-name">@item.ProductName</p>
-                        <p class="product-price">@item.Price đ</p>
-                        <div class="row-info">
-                            <p class="account">@item.User.UserName |</p>
-                            <p class="time"> @Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
-                            <p class="address">@item.Address</p>
-                            <button type="button">
-                                <img src="~/Content/Images/save-ad.svg" width="16px" height="16px" alt="">
-                            </button>
+@{
+    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+
+@if (Model.Count() == 0)
+{
+    <ul class="product-list-p">
+
+
+        Bạn chưa đăng sản phẩm nào !
+
+        <hr style="margin:4px 0;">
+
+    </ul>
+}
+else
+{
+
+    <ul class="product-list-p">
+        @foreach (var item in Model)
+        {
+            <li class="product-item-p">
+                <a href="/Home/Detail/?productId=@item.ProductId">
+                    <div class="product-img">
+                        <img src="@Url.Content("~/Content/Images/" + item.ImagePath)" alt="">
+                    </div>
+                    <div class="product-info">
+                        <div class="col-info-1">
+                            <p class="product-name">@item.ProductName</p>
+                            <p class="product-price">@Decimal.ToInt32(item.Price).ToString("#,###", cul.NumberFormat) đ</p>
+                            <div class="row-info">
+                                <p class="account">@item.User.UserName |</p>
+                                <p class="time"> @Math.Round(DateTime.Today.Subtract(item.CreateDate).TotalDays, 0) ngày trước |</p>
+                                <p class="address">@item.Address</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
-        <hr style="margin:4px 0;">
-    }
-</ul>
+                </a>
+                <button type="button" class="hideat fordlt" onclick="this.children[1].style.display = 'block';">
+                    <img src="~/Content/Images/3 cha,.png" width="20px" height="20px" alt="" />
+                    <div class="menu-p" onmouseleave="this.style.display ='none'">
+                        <ul>
+                            <li class="menu-p-item">
+                                <a class="delete-myproduct">Xóa</a>
+                                <input type="hidden" value="@item.ProductId" />
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </li>
+            <hr style="margin:4px 0;">
+        }
+    </ul>
+    @Html.PagedListPager(Model, page => Url.Action("Profile","User", new { page, userId = Session["UserId"] }));
+
+
+    <script>
+        const deleteBTs = document.querySelectorAll(".delete-myproduct");
+        var productId;
+        for (var dltBT of deleteBTs) {
+            dltBT.addEventListener("click", function () {
+                productId = parseInt(this.nextElementSibling.value);
+                $.ajax({
+                    type: "GET",
+                    url: "/Product/Delete",
+                    data: { productId: productId },
+                    success: function (data) {
+                        console.log("delete");
+                    }
+                });
+
+                this.closest("li.product-item-p").remove();
+            });
+        }
+
+
+    </script>
+
+
+
+}

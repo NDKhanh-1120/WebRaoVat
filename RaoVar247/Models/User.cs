@@ -24,14 +24,22 @@ namespace RaoVar247.Models
         public string UserName { get; set; }
 
 
-        [StringLength(10)]
+        [ScaffoldColumn(true)]
+        [RegularExpression(@"[0-9]+",ErrorMessage = "So dien thoai khong duoc chua chu")]
+        [StringLength(10, ErrorMessage = "So dien thoai yeu cau 10 so ")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "KHông ???c b? tr?ng !")]
-        [StringLength(50)]
+        [MinLength(8, ErrorMessage =" M?t kh?u t?i thi?u 8 kí t?")]
         public string Password { get; set; }
 
         [StringLength(50)]
         public string Address { get; set; }
+
+
+        [StringLength(50)]
+        public string Avatar { get; set; }
+
+        public bool Status { get; set; }
     }
 }

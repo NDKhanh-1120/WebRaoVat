@@ -29,9 +29,10 @@
         border-style: solid;
         padding-left: 8px;
     }
-.content .col-right .row-control select {
-
-}
+        .content .col-right .row-control input[type=submit] {
+            background-color: #f36523;
+            color:#fff;
+        }
 .content .col-left {
     width: 400px;
 }

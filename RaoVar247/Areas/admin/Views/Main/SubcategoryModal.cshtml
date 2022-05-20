@@ -1,0 +1,40 @@
+﻿@model RaoVar247.Models.SubCategory
+
+<div id="modal">
+    <div id="modal-form">
+        @using (Html.BeginForm("CreateSubcategory", "Main", FormMethod.Post, new { @name = "modal-form", enctype="multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" value="@TempData["currentcategoryId"]" name="categoryId" />
+            <h2 class="form-title-sub">Tạo mới danh mục con</h2>
+            <hr style="width: 90%;margin: 0 auto;">
+            <div class="row-control">
+                <label for="">Mã danh mục con</label>
+                @Html.TextBoxFor(model => model.SubCategoryId, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="row-control">
+                <label for="">Tên danh mục</label>
+                @Html.TextBoxFor(model => model.SubCategoryName, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubCategoryName, "", new { @class = "text-danger" })
+            </div>
+            <div class="row-control">
+                <img src="~/Content/Images/select-image-vector-12503576.jpg" width="120px" id="img" />
+                <label for="img-file" style="cursor:pointer">Chọn ảnh x
+                    <input type="file" id="img-file" name="imgfile" style="display:none" onchange="displayImg(event)" />
+                </label>
+                
+                <script>
+                    function displayImg(event) {
+                        var image = document.getElementById('img');
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
+                </script>
+            </div>
+            <div class="row-control">
+                <input id="modal-submit-button" name="modal-submit-button"  type="submit" value="Tạo" style="float:right;height:36px;width:120px">
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿
+
+.container-ep {
+    background-color: #fff;
+}
+
+    .container-ep .center {
+        width: 55%;
+        margin: 0 auto;
+    }
+
+        .container-ep .center .title {
+            padding: 12px 0;
+        }
+
+        .container-ep .center .avatar .img {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .container-ep .center .avatar .user-name {
+            display: inline;
+        }
+
+        .container-ep .center .avatar label {
+            font-size: 12px;
+            display: block;
+        }
+
+            .container-ep .center .avatar label:hover {
+                cursor: pointer;
+                columns: #ed702a;
+            }
+
+        .container-ep .center .avatar .user-name {
+            position: relative;
+            bottom: 52px;
+        }
+
+        .container-ep .center .title {
+            height: 52px;
+        }
+
+        .container-ep .center .row-control {
+            margin-top: 22px;
+        }
+
+            .container-ep .center .row-control label {
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .container-ep .center .row-control input[type="text"] {
+                padding-left: 12px;
+                font-size: 16px;
+                height: 40px;
+                width: 428px;
+            }
+
+            .container-ep .center .row-control input[type="submit"] {
+                background-color: #ed702a;
+                color: #fff;
+                height: 32px;
+                width: 112px;
+                border-style: none;
+            }
+
+            .container-ep .center .row-control input[type="text"]:focus {
+                outline-color: #ed702a;
+            }

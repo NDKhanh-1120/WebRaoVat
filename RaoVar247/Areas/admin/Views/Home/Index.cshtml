@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_EmptyLayout.cshtml";
+}
+
+@model RaoVar247.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/admin/Views/Shared/_EmptyLayout.cshtml";
+
+}
+
+
+<div class="login-ad">
+    <div class="login-form">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "form" }))
+        {
+            <div class="row-control">
+                <input type="text" name="username" id="" placeholder="Tài khoản">
+            </div>
+            <div class="row-control">
+                <input type="password" name="password" id="" placeholder="Mật khẩu">
+            </div>
+
+            <div class="row-control">
+                <input type="submit" value="Đăng nhập" name="" id="" placeholder="Mật khẩu">
+            </div>
+            if (TempData["Message"] != null)
+            {
+                 <p class="text-danger">@TempData["Message"] </p>
+            }
+        }
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/CSS/login-ad.css" rel="stylesheet" type="text/css" />
+}

@@ -1,0 +1,69 @@
+﻿@model RaoVar247.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-ep" style="width:100%">
+    <div class="center ct">
+        <div class="title">
+            <div>Chỉnh sửa trang cá nhân</div>
+            <hr>
+        </div>
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @id = "form", @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="avatar">
+                <input type="hidden" value="@Model.UserId" name="UserId" />
+                <input type="file" name="avatar-image" id="avatar-input" style="display: none" onchange="displayImg(event)">
+                <div class="img" for="avatar">
+                    @if (Model.Avatar != null)
+                    {
+                        <img src="@Url.Content("~/Content/Images/" + Model.Avatar) " id="avatar-img" alt="" width="88px" style="border-radius:30%">
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/avatar.png" id="avatar-img" alt="" width="88px" style="border-radius:50%">
+                    }
+                    <label for="avatar-input">Chọn ảnh đại diện</label>
+                </div>
+                <script>
+                    function displayImg(event) {
+                        var image = document.getElementById('avatar-img');
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
+                </script>
+                <div class="user-name">Tên đăng nhập : @Model.UserName</div>
+            </div>
+            <div class="row-control">
+                <label for="">Họ, đệm</label>
+                @Html.TextBoxFor(model => model.LastName, null, new { @value = Model.LastName })
+            </div>
+            <div class="row-control">
+                <label for="">Tên</label>
+                @Html.TextBoxFor(model => model.FirstName, null, new { @value = Model.FirstName })
+            </div>
+            <div class="row-control">
+                <label for="">Số điện thoại</label>
+                @Html.TextBoxFor(model => model.PhoneNumber, null, new { @value = Model.PhoneNumber })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="row-control">
+                <label for="">Địa chỉ</label>
+                @Html.TextBoxFor(model => model.Address, null, new { @value = Model.Address })
+
+            </div>
+            <div class="row-control">
+                <input type="submit" name="" id="" value="Cập nhật" style="margin-bottom:12px">
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/CSS/editprofileform.css" rel="stylesheet" type="text/css" />
+}
+

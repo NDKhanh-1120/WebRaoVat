@@ -19,7 +19,7 @@ namespace RaoVar247.Models
         [Required(ErrorMessage = "Không ???c ?? tr?ng !")]
         [RegularExpression(@"^\w{1,}",ErrorMessage = "Giá bán không bao g?m ch?")]
         [Column(TypeName = "money")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         public DateTime CreateDate { get; set; }
 
@@ -35,6 +35,13 @@ namespace RaoVar247.Models
         [Required(ErrorMessage = "Không ???c ?? tr?ng !")]
         [StringLength(999)]
         public string Description { get; set; }
+
+
+        [StringLength(50)]
+        public string Province { get; set; }
+
+        [StringLength(50)]
+        public string District { get; set; }
 
         public int? UserId { get; set; }
 

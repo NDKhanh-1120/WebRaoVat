@@ -1,0 +1,101 @@
+﻿    @model IEnumerable<RaoVar247.Models.User>
+
+@{
+    ViewBag.Title = "QUản lý tài khoản";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="content">
+    <div id="table">
+        @if (Model.Count() == 0)
+        {
+            <p>None</p>
+                     }
+        else
+            {
+
+        <table>
+            <thead>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Họ tên</th>
+            <th>Avatar</th>
+            <th>Hoạt động</th>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.UserName</td>
+                    <td>@item.LastName @item.FirstName</td>
+                    <td>
+                        @if (item.Avatar == null)
+                        {
+                            <img src="@Url.Content("~/Content/Images/avatar.png")" alt="" style="display:block;margin:0 auto;">
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/Content/Images/"+item.Avatar)" alt="" style="display:block;margin:0 auto;">
+                        }
+                    </td>
+
+
+                    <td accesskey="" d class="modify-button">
+                        <ul>
+                            <li>
+                                    @if(item.Status == true) {<button type="button" class="changestatus-button button">Khóa</button>}
+                                     else {<button type="button" class="changestatus-button button">Mở</button>}
+                                <input type="hidden" name="lockuserId" id="" value="@item.UserId">
+                            </li>
+                            <li class="delete-bt">
+                                <button href="" class="delete-button button">Xóa</button>
+                                <div class="delete-confirm-cell">
+                                    <h4>Xác nhận xóa ?</h4>
+                                    @using (Html.BeginForm("DeleteUser", "Users", FormMethod.Post, new { @class = "delete-confirm" }))
+                                    {
+                                        <input type="hidden" name="userId" id="" value="@item.UserId">
+                                        <input type="submit" value="Xóa">
+                                        <input type="button" value="Hủy" class="dispose">
+                                    }
+                                </div>
+                            </li>
+
+                        </ul>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+            }
+        </div>
+</div>
+
+<script src="~/Scripts/modify-action.js"></script>
+
+@section Styles {
+    <link href="~/Content/CSS/board2.css" rel="stylesheet" type="text/css" />
+}
+<script>
+    var ctBts = document.querySelectorAll(".changestatus-button");
+    for (var bt of ctBts) {
+        bt.addEventListener("click", function() {
+            var userID = this.nextElementSibling.value;
+            console.log(userID);
+            $.ajax({
+                type: "GET",
+                url: "/Users/ChangeStatus",
+                data: { userId: userID }
+
+            });
+            if (this.innerHTML == "Khóa") {
+                this.innerHTML = "Mở";
+            }
+            else {
+                this.innerHTML = "Khóa";
+            }
+        })
+    }
+</script>

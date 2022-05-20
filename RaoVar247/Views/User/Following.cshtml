@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<RaoVar247.Models.User>
+
+
+<div class="container">
+
+    <div class="posted-product">
+        <div class="title">
+            <h3>Người dùng đã lưu</h3>
+            <hr style="color:#000;margin:8px 0">
+        </div>
+        <div class="content">
+            @if (Model.Count() == 0)
+            {
+                <ul class="product-list-p">
+
+
+                    Bạn chưa lưu người dùng nào nào !
+
+                    <hr style="margin:4px 0;">
+
+                </ul>
+            }
+            else
+            {
+
+                <ul class="product-list-p">
+                    @foreach (var item in Model)
+                    {
+                        <li class="product-item-p">
+                            <a href="/User/Profile/?userId=@item.UserId">
+                                <div class="product-img">
+                                    <img src="@Url.Content("~/Content/Images/" + item.Avatar)" alt="">
+                                </div>
+                                <div class="product-info">
+                                    <div class="col-info-1">
+                                        <p class="product-name">@item.LastName @item.FirstName</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <hr style="margin:4px 0;">
+                    }
+                </ul>
+                <div class="page-devided">
+                    <p class="page-number">1</p>
+                    <p class="page-number">2</p>
+                    <p class="page-number">3</p>
+                    <p class="page-number">4</p>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/CSS/profile.css" rel="stylesheet" type="text/css" />
+    <style>
+        .product-item-p .product-info {
+            height: auto;
+        }
+        .product-item-p .product-img img {
+            width: 90px;
+            max-height: 90px;
+            min-height: 90px;
+            border-radius:50%;
+        }
+        .product-item-p a:hover .product-name{
+            color: #F57229;
+        }
+    </style>
+}
+

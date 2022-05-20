@@ -15,10 +15,10 @@ namespace RaoVar247.Areas.admin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "admin_default",
-                "admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new[] { "RaoVat247.Areas.admin.Controllers" }
+                name:"admin_default",
+                url:"admin/{controller}/{action}/{id}",
+                defaults : new { action = "Index", controller = "Home" ,id = UrlParameter.Optional },
+                namespaces: new[] { "RaoVar247.Areas.Admin.Controllers" }
             );
         }
     }

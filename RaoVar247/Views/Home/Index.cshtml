@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<RaoVar247.Models.Product>
 @{
     ViewBag.Title = "Home Page";
+    var cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
 @*//@Html.Partial("CategoryList")*@
@@ -20,8 +21,8 @@
                         var imagePath = "~/Content/Images/" + item.ImagePath;
                     }
                     <img src="@Url.Content(imagePath)" alt="">
-                    <p class="product-name">@item.ProductName</p>
-                    <p class="product-price">@item.Price vnđ</p>
+                    <p class="product-name">@if(item.ProductName.Length > 25){  @item.ProductName.Substring(0,24) } else { <span>@item.ProductName</span> }</p>
+                    <p class="product-price">@Decimal.ToInt32(item.Price).ToString("#,###", cul.NumberFormat) vnđ</p>
                     <p class="user-name">@item.User.LastName @item.User.FirstName</p>
                     <div class="info-row">
                         <p class="post-time">

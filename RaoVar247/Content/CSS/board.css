@@ -33,6 +33,7 @@ tbody td a.subcategory-button {
 }
 td img {
     width: 20%;
+    max-height:132px;
 }
 
 #content nav#breadcumb {
@@ -48,7 +49,6 @@ td img {
 }
 #content .create-button {
     display: inline-block;
-    margin-left: 1050px;
     height: 44px;
 }
 #content .create-button a {
@@ -71,7 +71,7 @@ td img {
     line-height: 32px;
 }
 
-.modify-button ul li.edit-button a {
+.modify-button ul li .changestatus-button a {
     background-color: #4769E2;
 }
 .modify-button ul li.delete-button a {
